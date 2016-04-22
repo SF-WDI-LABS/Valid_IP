@@ -24,11 +24,13 @@ describe "validIP?" do
     expect(validIP?("-1.0.0.0")).to eq(false)
     expect(validIP?("-1000.-1000.-1000.-1000")).to eq(false)
   end
+  it "contains no numbers prefixed by 0" do
+    expect(validIP?("01.01.01.01")).to eq(false)
+  end
   it "contains no characters but digits and ." do
     expect(validIP?("1/2.0.28*4.0")).to eq(false)
   end
   it "requires at least one character between .s" do
-    # expect(validIP?("...0")).to eq(false)
     expect(validIP?("...0")).to eq(false)
   end
 end
