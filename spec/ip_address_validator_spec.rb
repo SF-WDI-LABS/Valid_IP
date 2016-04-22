@@ -12,11 +12,8 @@ describe "validIP?" do
     expect(validIP?("0.0.0.0.0.0.0")).to eq(false)
     expect(validIP?("0.0.0.0.0.0")).to eq(false)
   end
-  it "contains numbers between 0 and 255" do
-    expect(validIP?("255.0.0.0")).to eq(true)
-    expect(validIP?("0.100.200.255")).to eq(true)
-  end
-  it "contains no number greater than 255" do
+  it "contains only numbers between 0 and 255" do
+    expect(validIP?("#{rand(0..255)}.#{rand(0..255)}.#{rand(0..255)}.#{rand(0..255)}")).to eq(true)
     expect(validIP?("256.0.0.0")).to eq(false)
     expect(validIP?("1000.1000.1000.1000")).to eq(false)
   end
@@ -26,9 +23,9 @@ describe "validIP?" do
   end
   it "contains no characters but digits and ." do
     expect(validIP?("1/2.0.28*4.0")).to eq(false)
+    expect(validIP?("a.b.c.d")).to eq(false)
   end
   it "requires at least one character between .s" do
-    # expect(validIP?("...0")).to eq(false)
     expect(validIP?("...0")).to eq(false)
   end
 end
