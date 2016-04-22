@@ -23,9 +23,9 @@ describe "validIP?" do
   end
   it "contains no characters but digits and ." do
     expect(validIP?("1/2.0.28*4.0")).to eq(false)
+    expect(validIP?("a.b.c.d")).to eq(false)
   end
   it "requires at least one character between .s" do
-    # expect(validIP?("...0")).to eq(false)
     expect(validIP?("...0")).to eq(false)
   end
 end
